@@ -1,0 +1,51 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import Section from "~/components/Section.astro";
+import Container from "~/components/Container.astro";
+import Heading from "~/components/Heading.astro";
+import Members from "~/components/Members.astro";
+import Article from "~/components/Article.astro";
+---
+
+<Layout>
+  <Section class:list={"bg-white"}>
+    <Container>
+      <Heading>
+        <h1 slot="heading-title" class="font-black text-[#44A08D] h2">
+          About Us
+        </h1>
+        <p slot="heading-content">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente,
+          iusto vitae. Sapiente architecto hic commodi quae facilis
+          reprehenderit amet maxime! Voluptate, hic, voluptatem illo, veritatis
+          alias at laudantium nostrum exercitationem commodi laborum non
+          reprehenderit minima!
+        </p>
+      </Heading>
+
+      <Members />
+    </Container>
+  </Section>
+
+  <Section class:list={"bg-white"}>
+    <Container>
+      <Article>
+        <h2 class="font-bold text-[#44A08D] h3">Our Story</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
+          perspiciatis eaque? Animi architecto sint nulla? Modi saepe corrupti
+          optio id recusandae accusantium? Quaerat impedit rem, qui aspernatur
+          rerum saepe repellendus, nostrum accusantium, est labore quam.
+        </p>
+        <h2 class="font-bold text-[#44A08D] h3">Our Mission</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam earum
+          doloremque minus explicabo, at a aspernatur voluptate. Numquam
+          adipisci facere minus dolorum consequatur ipsum? Quas at
+          necessitatibus dignissimos sit, earum itaque distinctio reprehenderit
+          sequi molestias!
+        </p>
+      </Article>
+    </Container>
+  </Section>
+</Layout>

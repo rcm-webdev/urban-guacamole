@@ -1,0 +1,96 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import Section from "~/components/Section.astro";
+import Container from "~/components/Container.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const drinks = await getCollection("drinks");
+  return drinks.map((drink) => ({
+    params: { slug: drink.id },
+    props: { drink },
+  }));
+}
+
+const { drink } = Astro.props;
+// console.log(cat);
+---
+
+<Layout>
+  <Section class="bg-white">
+    <Container>
+      <div
+        class="bg-[#f5efe0] opacity-80 backdrop-blur-xl max-w-4xl mx-auto rounded-xl p-2"
+      >
+        <Image
+          src={drink.data.image}
+          alt={drink.data.name}
+          class:list={"w-full h-full object-cover rounded-2xl shadow rotate-1"}
+          transition:name={`cat-image-${drink.id}`}
+        />
+
+        <div class="prose max-w-none">
+          <h1
+            class="h2 text-teal-500 mt-16"
+            transition:name={`cat-title-${drink.id}`}
+          >
+            {drink.data.name}
+          </h1>
+          <p
+            class="leading-loose"
+            transition:name={`cat-description-${drink.id}`}
+          >
+            {drink.data.description}
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section class:list={"bg-white "}>
+    <Container>
+      <div
+        class="overflow-hidden bg-[#f5efe0] opacity-80 ring ring-fuchsia-500 rounded-2xl max-w-4xl mx-auto"
+      >
+        <div class="px-4 py-8 sm:px-6">
+          <h3>Information</h3>
+          <p class="mt-4 max-w-2xl">
+            Here you can find detailed information about our, {drink.data.name}.
+          </p>
+        </div>
+        <div class="border-t border-gray-100">
+          <dl class="divide-y divide-gray-100">
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-semibold">Name</dt>
+              <dd class="mt-1 sm:col-span-2 sm:mt-0 capitalize">
+                {drink.data.name}
+              </dd>
+            </div>
+
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-semibold">Base Spirit</dt>
+              <dd class="mt-1 sm:col-span-2 sm:mt-0 capitalize">
+                {drink.data.spirit}
+              </dd>
+            </div>
+
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-semibold">Occasion</dt>
+              <dd class="mt-1 sm:col-span-2 sm:mt-0 capitalize">
+                {drink.data.occasion}
+              </dd>
+            </div>
+
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-semibold">Gluten-Free</dt>
+              <dd class="mt-1 sm:col-span-2 sm:mt-0 capitalize">
+                {drink.data.glutenFree ? "Yes" : "No"}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</Layout>

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "lily-green",
+    "name": "Lily Green",
+    "role": "Head Botanist",
+    "description": "I ensure all our plants are healthy and thriving, and I create unique plant arrangements for our customers.",
+    "image": "/src/assets/images/members/notion1.webp"
+  },
+  {
+    "id": "olive-branch",
+    "name": "Olive Branch",
+    "role": "Mixologist",
+    "description": "I craft delicious and creative cocktails inspired by the flavors of nature.",
+    "image": "/src/assets/images/members/notion5.webp"
+  },
+  {
+    "id": "fern-leaf",
+    "name": "Fern Leaf",
+    "role": "Shop Manager",
+    "description": "I oversee the daily operations of the plant shop bar, ensuring everything runs smoothly.",
+    "image": "/src/assets/images/members/notion3.webp"
+  },
+  {
+    "id": "basil-sprig",
+    "name": "Basil Sprig",
+    "role": "Plant Care Specialist",
+    "description": "I take care of watering, pruning, and maintaining the health of all our plants.",
+    "image": "/src/assets/images/members/notion4.webp"
+  },
+  {
+    "id": "rose-petal",
+    "name": "Rose Petal",
+    "role": "Customer Experience Coordinator",
+    "description": "I help customers find the perfect plants and cocktails for their needs.",
+    "image": "/src/assets/images/members/notion2.webp"
+  },
+  {
+    "id": "cedar-wood",
+    "name": "Cedar Wood",
+    "role": "Event Coordinator",
+    "description": "I organize workshops, plant care classes, and cocktail tasting events.",
+    "image": "/src/assets/images/members/notion6.webp"
+  }
+]

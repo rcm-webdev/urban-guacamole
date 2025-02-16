@@ -1,0 +1,103 @@
+---
+import catNames from "~/data/names.json";
+const { title = "", link } = Astro.props;
+---
+
+<div
+  id="cat-generator-wrapper"
+  class="flex flex-col items-center gap-8 max-w-4xl w-full mx-auto"
+>
+  <h2 class="text-white text-center">{title}</h2>
+
+  <div class="max-w-md w-full mx-auto flex items-center gap-x-4">
+    <label for="generator" class="sr-only">Pick a drink</label>
+    <input
+      type="text"
+      name="generator"
+      id="cat-generator-input"
+      readonly
+      value="Old Fashioned"
+    />
+    <button
+      class="button button-teal"
+      id="button-generate-name"
+      aria-label="Pick a cocktail"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        id="cocktail-icon"
+        class="size-7 origin-center"
+        viewBox="0 0 24 24"
+        ><g
+          fill="curretnColor"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          ><path d="M9 6L6.6 2.8C6.3 2.4 5.6 2 5 2H2m16 4l-7 8l-7-8Z"
+          ></path><path d="M15.4 9.1A4 4 0 1 0 14 6m-3 8v8m-4 0h8"></path></g
+        ></svg
+      >
+    </button>
+  </div>
+
+  <div id="names" data-names={JSON.stringify(catNames)}></div>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const catGeneratorWrapper = document.getElementById(
+      "cat-generator-wrapper"
+    );
+
+    if (catGeneratorWrapper) {
+      const button = document.getElementById(
+        "button-generate-name"
+      )! as HTMLButtonElement;
+      const input = document.getElementById(
+        "cat-generator-input"
+      )! as HTMLInputElement;
+      const names = JSON.parse(
+        document.getElementById("names")!.dataset.names!
+      );
+      const cocktailIcon = document.getElementById("cocktail-icon")!;
+
+      if (names) {
+        input.addEventListener("click", () => {
+          input.select();
+        });
+
+        button.addEventListener("click", () => {
+          const firstName =
+            names.firstNames[
+              Math.floor(Math.random() * names.firstNames.length)
+            ];
+          const lastName =
+            names.lastNames[Math.floor(Math.random() * names.lastNames.length)];
+          input.value = `${firstName} ${lastName}`;
+
+          cocktailIcon.classList.add("animate");
+
+          setTimeout(() => {
+            cocktailIcon.classList.remove("animate");
+          }, 1000);
+        });
+      }
+    }
+  });
+</script>
+
+<style>
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate {
+    animation: rotate 1s linear;
+  }
+</style>

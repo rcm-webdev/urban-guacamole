@@ -1,0 +1,38 @@
+[
+  {
+    "id": "classic-mojito",
+    "name": "Classic Mojito",
+    "occasion": "Summer",
+    "spirit": "rum",
+    "description": "Muddle mint leaves, sugar, and lime juice in a glass. Add rum and ice, then top with soda water. Stir gently and garnish with a mint sprig.",
+    "glutenFree": true,
+    "image": "/src/assets/images/cocktail.webp"
+  },
+  {
+    "id": "espresso-martini",
+    "name": "Espresso Martini",
+    "occasion": "Year-round",
+    "spirit": "vodka",
+    "description": "Shake all ingredients with ice until well-chilled. Strain into a martini glass and garnish with coffee beans.",
+    "glutenFree": false,
+    "image": "/src/assets/images/cocktail.webp"
+  },
+  {
+    "id": "cucumber-cooler",
+    "name": "Virgin Cucumber Cooler",
+    "occasion": "Spring",
+    "spirit": "non-alcoholic",
+    "description": "Muddle cucumber slices with lime juice and agave syrup. Add ice, top with soda water, and stir gently. Garnish with mint leaves.",
+    "glutenFree": false,
+    "image": "/src/assets/images/cocktail.webp"
+  },
+  {
+    "id": "pina-colada",
+    "name": "Virgin Pina Colada",
+    "occasion": "Summer",
+    "spirit": "non-alcoholic",
+    "description": "Blend all ingredients with ice until smooth. Pour into a glass and garnish with a pineapple wedge or cherry.",
+    "glutenFree": false,
+    "image": "/src/assets/images/cocktail.webp"
+  }
+]

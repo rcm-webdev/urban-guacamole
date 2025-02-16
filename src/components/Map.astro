@@ -1,0 +1,18 @@
+---
+import { Image } from "astro:assets";
+
+import Party from "~/assets/images/map.png";
+---
+
+<a
+  href="https://beta.maps.apple.com/?address=107+S+Madison+St%2C+Spokane%2C+WA+99201%2C+United+States&auid=15157764476874080579&ll=47.6562387%2C-117.427794&lsp=9902&q=Garden+Party"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="w-full h-auto"
+>
+  <Image
+    src={Party}
+    alt="Map"
+    class:list={"w-full h-auto border-solid border-pink-500 border-8 rounded-xl "}
+  />
+</a>

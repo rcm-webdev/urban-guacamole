@@ -1,0 +1,14 @@
+---
+import { getEntries } from "astro:content";
+import CardCat from "./CardCat.astro";
+const { drinks = [] } = Astro.props;
+const drinkEntries = await getEntries(
+  drinks.map((id: string) => ({ collection: "drinks", id: id }))
+);
+---
+
+<div>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 xl:gap-24">
+    {drinkEntries.map((drink) => <CardCat drink={drink} />)}
+  </div>
+</div>

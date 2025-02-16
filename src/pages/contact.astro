@@ -1,0 +1,46 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import Section from "~/components/Section.astro";
+import Container from "~/components/Container.astro";
+import Heading from "~/components/Heading.astro";
+import FormContact from "~/components/forms/FormContact.astro";
+import Map from "~/components/Map.astro";
+import TableHours from "~/components/TableHours.astro";
+import Address from "~/components/Address.astro";
+---
+
+<Layout>
+  <Section>
+    <Container>
+      <div class="grid grid-cols-1 gap-8 lg:gap-16 xl:gap-24 lg:grid-cols-2">
+        <div>
+          <Heading>
+            <h2 slot="heading-title" class="h2">Contact</h2>
+            <p slot="heading-content">
+              Whether you’re planning a private party, a corporate event, or
+              just want to stop by for a drink among the greenery, our team is
+              here to help. Let’s grow something amazing together!
+            </p>
+            <p slot="heading-content">
+              Follow us on [Instagram/Facebook] for updates on our latest
+              cocktails, plant sales, and event specials.
+            </p>
+          </Heading>
+
+          <FormContact />
+        </div>
+
+        <div>
+          <Heading>
+            <h2 slot="heading-title" class="h2">Location &amp; Hours</h2>
+            <div slot="heading-content">
+              <Address />
+              <TableHours />
+            </div>
+          </Heading>
+          <Map />
+        </div>
+      </div>
+    </Container>
+  </Section>
+</Layout>

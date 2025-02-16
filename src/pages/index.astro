@@ -1,0 +1,227 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import Section from "~/components/Section.astro";
+import Container from "~/components/Container.astro";
+import { Image, Picture } from "astro:assets";
+import Hero from "~/components/Hero.astro";
+import Button from "~/components/Button.astro";
+import Faq from "~/components/Faq.astro";
+import CallToAction from "~/components/CallToAction.astro";
+import ShowCats from "~/components/ShowCats.astro";
+import ShowBlogs from "~/components/ShowBlogs.astro";
+import Heading from "~/components/Heading.astro";
+import CatNameGenerator from "~/components/CatNameGenerator.astro";
+
+// Images
+import PlantBackground from "~/assets/images/hero-background.webp";
+import PlantCollection from "~/assets/images/plant-collection.webp";
+import Cocktail from "~/assets/images/cocktail.webp";
+import Plant from "~/assets/images/PlantDoodle.svg";
+
+// Faq
+const faq = [
+  {
+    question: "Can I buy plants without ordering a drink?",
+    answer:
+      "Absolutely! Our plant shop is open to everyone, whether you’re here for a cocktail or just browsing our greenery.",
+  },
+  {
+    question: "Do you host private events?",
+    answer:
+      "Yes! Our space is perfect for birthdays, corporate events, and more. Contact us at info@yourbarname.com to discuss your event needs.",
+  },
+  {
+    question: "Do you offer non-alcoholic options?",
+    answer:
+      "Of course! We have a selection of refreshing mocktails and non-alcoholic beverages that are just as creative and delicious.",
+  },
+  {
+    question: "Do I need to make a reservation to visit the bar?",
+    answer:
+      "Reservations aren’t required for general visits, but we recommend booking ahead for weekends or special events to secure your spot!",
+  },
+];
+---
+
+<Layout title="Home" pageTitle="Home" description="Welcome to plant city">
+  <Section class:list={"relative overflow-x-hidden"}>
+    <Picture
+      src={PlantBackground}
+      alt="Plant"
+      class:list={"absolute inset-0 w-full h-full object-cover"}
+      loading={"eager"}
+      fetchpriority={"high"}
+    />
+    <div
+      class="bg-gradient-to-r from-[#44A08D]/60 to-[#093637]/80 absolute inset-0"
+    >
+    </div>
+    <Container
+      class:list={"relative z-10 h-full lg:min-h-svh lg:h-svh overflow-hidden"}
+    >
+      <!-- Background shapes -->
+
+      <div class="flex flex-col lg:flex-row items-center h-full">
+        <!-- SVG on the left (or top on mobile) -->
+        <div
+          class="lg:order-1 order-2 lg:w-1/2 w-full lg:pr-8 mt-5 hidden lg:block"
+        >
+          <Picture
+            src={Plant}
+            alt="Plant"
+            class:list={"h-screen w-auto z-20"}
+            loading={"eager"}
+            fetchpriority={"high"}
+          />
+        </div>
+
+        <!-- Text content -->
+        <div class="lg:order-2 order-1 lg:w-1/2 w-full lg:ml-auto">
+          <div
+            class="prose prose-xl prose-invert text-white lg:text-right text-balance"
+          >
+            <h1 class="text-5xl lg:text-8xl mb-0">
+              Welcome to <span class="text-[#e9cf81]">Garden Party!</span>
+            </h1>
+            <p>
+              We are constantly mixing up cocktails and plants for a unique
+              experience. Come visit us for a drink and leave with a new plant
+              friend.
+            </p>
+
+            <div class="not-prose mt-8">
+              <Button url="/drinks" color="white"> Menu </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section class:list={"bg-white"}>
+    <Container>
+      <Hero>
+        <div slot="hero-content-left" class="prose">
+          <h2 class="h2 text-[#44A08D]">Book an event!</h2>
+          <p class="leading-loose">
+            Whether you’re planning a private party, a corporate event, or just
+            want to stop by for a drink among the greenery, our team is here to
+            help.
+          </p>
+
+          <div class="not-prose mt-16">
+            <Button url="/contact">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-5 -rotate-45 -mt-1 inline-block mr-1 group-hover:rotate-0 transition duration-300"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+                ></path>
+              </svg>
+              Contact
+            </Button>
+          </div>
+        </div>
+        <div slot="hero-content-right" class="-rotate-1">
+          <Image
+            src={PlantCollection}
+            alt="Plant Collection"
+            class:list={"w-5/6 h-5/6 object-cover rounded-2xl shadow"}
+          />
+        </div>
+      </Hero>
+    </Container>
+  </Section>
+
+  <Section>
+    <Container>
+      <Heading>
+        <h2 slot="heading-title" class="h2 text-[#44A08D]">
+          Fan Favorite Drinks
+        </h2>
+        <p slot="heading-content">
+          We are always mixing up new drinks. Here are some of our fan favorites
+          that you can try when you visit us.
+        </p>
+      </Heading>
+
+      <ShowCats
+        drinks={["classic-mojito", "pina-colada", "espresso-martini"]}
+      />
+    </Container>
+  </Section>
+
+  <Section class:list={"bg-white"}>
+    <Container>
+      <Hero invert>
+        <div slot="hero-content-left" class="prose">
+          <h2 class="h2 text-[#44A08D]">FAQ</h2>
+          <Faq items={faq} color="fuchsia" />
+        </div>
+        <div slot="hero-content-right" class="rotate-1">
+          <Image
+            src={Cocktail}
+            alt="Cocktail"
+            class:list={"w-2/4 h-2/4 object-cover rounded-2xl shadow"}
+          />
+        </div>
+      </Hero>
+    </Container>
+  </Section>
+
+  <Section class:list={"relative"}>
+    <Image
+      src={PlantBackground}
+      alt="Plant"
+      class:list={"absolute inset-0 w-full h-full object-cover"}
+    />
+    <div
+      class="bg-gradient-to-r from-[#44A08D]/80 to-[#093637]/80 absolute inset-0"
+    >
+    </div>
+
+    <Container class:list={"relative z-10"}>
+      <CallToAction
+        title="Stop by and get a drink!"
+        link={{ title: "Menu", url: "/drinks", color: "white" }}
+      />
+    </Container>
+  </Section>
+
+  <Section>
+    <Container>
+      <Heading>
+        <h2 slot="heading-title" class="h2 text-[#44A08D]">Latest News</h2>
+        <p slot="heading-content">
+          Get the latest news and updates from our shop. Stay tuned! Checkout
+          our Instagram for more updates.
+        </p>
+      </Heading>
+
+      <ShowBlogs posts={["open-world", "plant-city", "new-site-launched"]} />
+    </Container>
+  </Section>
+
+  <Section class:list={"relative"}>
+    <Image
+      src={PlantBackground}
+      alt="Cat"
+      class:list={"absolute inset-0 w-full h-full object-cover"}
+    />
+    <div
+      class="bg-gradient-to-r from-[#44A08D]/80 to-[#093637]/80 absolute inset-0"
+    >
+    </div>
+
+    <Container class:list={"relative z-10"}>
+      <CatNameGenerator title="Help me pick a drink!" />
+    </Container>
+  </Section>
+</Layout>

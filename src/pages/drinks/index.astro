@@ -1,0 +1,128 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import Section from "~/components/Section.astro";
+import Container from "~/components/Container.astro";
+import Heading from "~/components/Heading.astro";
+import CardCat from "~/components/CardCat.astro";
+import { getCollection } from "astro:content";
+
+const drinks = await getCollection("drinks");
+---
+
+<Layout>
+  <Section class:list={"background-pattern"}>
+    <Container>
+      <Heading>
+        <h1 slot="heading-title">Menu</h1>
+        <p slot="heading-content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit,
+          temporibus. Velit aspernatur consequuntur commodi saepe repudiandae
+          cum optio iste quia! Ipsum repellat corrupti ex totam.
+        </p>
+      </Heading>
+
+      <div
+        id="drink-filter-wrapper"
+        class="my-8 flex flex-wrap gap-x-8 gap-y-4 items-center justify-center bg-gradient-to-r from-fuchsia-100 to-teal-100 p-4 rounded-2xl"
+      >
+        <div>
+          <label for="spirit">Base Spirit</label>
+          <select
+            name="spirit"
+            id="spirit"
+            class="bg-transparent rounded-full ring-1 px-2 py-1 ring-teal-500 mt-2"
+          >
+            <option value="all" class="text-black">All</option>
+
+            <option value="whiskey">Whiskey</option>
+            <option value="vodka">Vodka</option>
+            <option value="rum">Rum</option>
+            <option value="tequila">Tequila</option>
+            <option value="gin">Gin</option>
+            <option value="non-alcoholic">Non-alcoholic</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="occasion">Occasion</label>
+          <select
+            name="occasion"
+            id="occasion"
+            class="bg-transparent rounded-full ring-1 px-2 py-1 ring-teal-500 mt-2"
+          >
+            <option value="all">All</option>
+          </select>
+        </div>
+      </div>
+      <ul class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 xl:gap-24">
+        {drinks.map((drink) => <CardCat drink={drink} />)}
+      </ul>
+    </Container>
+  </Section>
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const drinkFilterWrapper = document.getElementById("drink-filter-wrapper")!;
+
+    if (drinkFilterWrapper) {
+      const drinkCards = document.querySelectorAll("[data-drink]")!;
+      const genderFilter = document.getElementById("spirit")!;
+      const breedFilter = document.getElementById("occasion")!;
+
+      const drinksData = Array.from(drinkCards).map((card, index) => {
+        const dataDrink = card.getAttribute("data-drink");
+        return {
+          index,
+          show: true,
+          ...(dataDrink ? JSON.parse(dataDrink) : {}),
+        };
+      });
+
+      const updateFilters = () => {
+        const selectedGender = genderFilter
+          ? (genderFilter as HTMLSelectElement).value
+          : "all";
+        const selectedBreed = breedFilter
+          ? (breedFilter as HTMLSelectElement).value
+          : "all";
+
+        drinksData.forEach((drink) => {
+          drink.show =
+            (selectedGender === "all" || drink.spirit === selectedGender) &&
+            (selectedBreed === "all" || drink.occasion === selectedBreed);
+        });
+
+        drinkCards.forEach((card, index) => {
+          if (drinksData[index].show) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        updateOptions();
+      };
+
+      const updateOptions = () => {
+        const visibleDrinks = drinksData.filter((drink) => drink.show);
+
+        const breeds = new Set(visibleDrinks.map((drink) => drink.occasion));
+        const selectedBreed = (breedFilter as HTMLSelectElement).value;
+        breedFilter.innerHTML = '<option value="all">All</option>';
+        breeds.forEach((occasion) => {
+          const option = document.createElement("option");
+          option.value = occasion;
+          option.textContent = occasion;
+          breedFilter.appendChild(option);
+        });
+        (breedFilter as HTMLSelectElement).value = selectedBreed;
+      };
+
+      genderFilter.addEventListener("change", updateFilters);
+      breedFilter.addEventListener("change", updateFilters);
+
+      updateOptions();
+    }
+  });
+</script>

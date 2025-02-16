@@ -1,0 +1,26 @@
+---
+import { socialMedia } from "~/data/config.js";
+import IconFacebook from "~/assets/icons/facebook.svg";
+import IconInstagram from "~/assets/icons/instagram.svg";
+---
+
+{
+  Object.values(socialMedia).map(
+    (item: { url: string; label: string; icon: string }) => (
+      <a
+        href={item.url}
+        target="_blank"
+        aria-label={item.label}
+        rel="noopener noreferrer"
+        class="social-media-icon"
+      >
+        {item.icon === "facebook" && (
+          <IconFacebook class="size-12 hover:text-[#44A08D] transition p-1 -m-1" />
+        )}
+        {item.icon === "instagram" && (
+          <IconInstagram class="size-12 hover:text-[#44A08D] transition p-1 -m-1" />
+        )}
+      </a>
+    )
+  )
+}

@@ -1,0 +1,17 @@
+# humanstxt.org/Standard.html
+# This file is used to provide information about the people who have contributed to building the website.
+
+# DEVELOPER
+Name: Roberto Murillo
+Company: rcmcodes
+Location: Washington
+LinkedIn: https://linkedin.com/in/roberto-c-murillo
+Website: https://rcmcodes.com
+Email: hello@rcmcodes.com
+
+# STACK
+Astro
+TailwindCSS
+
+# SITE
+Last update: 2-7-2025
